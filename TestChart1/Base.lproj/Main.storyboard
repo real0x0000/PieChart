@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LDW-G7-egZ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="ceN-gm-eC2">
+            <objects>
+                <viewController id="LDW-G7-egZ" customClass="MainViewController" customModule="TestChart1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0w6-0v-z1f">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZA-bD-G0X" customClass="BudgetChartView" customModule="TestChart1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dZA-bD-G0X" firstAttribute="top" secondItem="PCn-qR-fHc" secondAttribute="top" constant="30" id="2Zt-8u-6rk"/>
+                            <constraint firstItem="PCn-qR-fHc" firstAttribute="bottom" secondItem="dZA-bD-G0X" secondAttribute="bottom" id="aJU-2x-2Hp"/>
+                            <constraint firstItem="dZA-bD-G0X" firstAttribute="leading" secondItem="PCn-qR-fHc" secondAttribute="leading" id="kt8-Y8-GfR"/>
+                            <constraint firstItem="PCn-qR-fHc" firstAttribute="trailing" secondItem="dZA-bD-G0X" secondAttribute="trailing" id="v7W-xh-8n7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PCn-qR-fHc"/>
+                    </view>
+                    <connections>
+                        <outlet property="budgetChart" destination="dZA-bD-G0X" id="85g-Dq-KYw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VbZ-Rv-EoG" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4" y="-556"/>
+        </scene>
+    </scenes>
+</document>
