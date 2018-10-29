@@ -94,7 +94,10 @@ import UIKit
     }
     
     private func sharedInit() {
-        mainBounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: bounds.height)
+        let screenWidth = UIScreen.main.bounds.width
+        mainBounds = CGRect(x: 0, y: 0, width: screenWidth, height: bounds.height)
+        innerRadius = screenWidth / 6
+        outerRadius = screenWidth / 4
         layer.addSublayer(container)
         container.frame = mainBounds
     }
