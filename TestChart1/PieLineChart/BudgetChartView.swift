@@ -18,6 +18,12 @@ class BudgetChartView: UIView {
     @IBOutlet weak var hotelSlider: UISlider!
     @IBOutlet weak var mealSlider: UISlider!
     @IBOutlet weak var otherSlider: UISlider!
+    @IBOutlet weak var budgetLabel: UILabel!
+    @IBOutlet weak var editBudgetButton: UIButton!
+    @IBOutlet weak var budgetView: UIView!
+    @IBOutlet weak var budgetTextField: UITextField!
+    @IBOutlet weak var editBudgetView: UIView!
+    
     
     @IBAction func slide(_ sender: UISlider) {
         print(chartView.frame)
@@ -48,6 +54,8 @@ class BudgetChartView: UIView {
                                                       metrics: nil,
                                                       views: ["childView": view]))
         chartView.isUserInteractionEnabled = false
+        editBudgetView.isHidden = true
+//        budgetView.isHidden = true
     }
     
     func setChartEntries(entries: [ChartEntry]) {
