@@ -29,11 +29,11 @@ class MainViewController: UIViewController {
     }
     
     func setupChart() {
-        budgetChart.allBudget = 30000
-        budgetChart.flightBudget = 12000
-        budgetChart.hotelBudget = 10000
-        budgetChart.mealBudget = 3000
-        budgetChart.otherBudget = 5000
+        budgetChart.allBudget = 3000000000
+        budgetChart.flightBudget = 1200000000
+        budgetChart.hotelBudget = 1000000000
+        budgetChart.mealBudget = 300000000
+        budgetChart.otherBudget = 500000000
         let flightEntry = ChartEntry(budgetType: .flight, value: 40.0, color: UIColor(red: 34/255.0, green: 156/255.0, blue: 211/255.0, alpha: 1.0), image: UIImage(named: "flight"))
         let hotelEntry = ChartEntry(budgetType: .hotel, value: 30.0, color: UIColor(red: 17/255.0, green: 207/255.0, blue: 159/255.0, alpha: 1.0), image: UIImage(named: "hotel"))
         let mealEntry = ChartEntry(budgetType: .meal, value: 20.0, color: UIColor(red: 227/255.0, green: 110/255.0, blue: 19/255.0, alpha: 1.0), image: UIImage(named: "meal"))

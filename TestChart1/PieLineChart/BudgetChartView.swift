@@ -11,11 +11,11 @@ import UIKit
 
 class BudgetChartView: UIView {
     
-    var allBudget: Float = 0.0
-    var flightBudget: Float = 0.0
-    var hotelBudget: Float = 0.0
-    var mealBudget: Float = 0.0
-    var otherBudget: Float = 0.0
+    var allBudget: Double = 0.0
+    var flightBudget: Double = 0.0
+    var hotelBudget: Double = 0.0
+    var mealBudget: Double = 0.0
+    var otherBudget: Double = 0.0
     var chartEntries: [ChartEntry] = []
     
     @IBAction func editBudget(_ sender: UIButton) {
@@ -78,14 +78,14 @@ class BudgetChartView: UIView {
         chartEntries = entries
         budgetLabel.text = "\(allBudget)"
         budgetTextField.text = "\(allBudget)"
-        flightSlider.maximumValue = allBudget
-        flightSlider.value = flightBudget
-        hotelSlider.maximumValue = allBudget
-        hotelSlider.value = hotelBudget
-        mealSlider.maximumValue = allBudget
-        mealSlider.value = mealBudget
-        otherSlider.maximumValue = allBudget
-        otherSlider.value = otherBudget
+        flightSlider.maximumValue = Float(allBudget)
+        flightSlider.value = Float(flightBudget)
+        hotelSlider.maximumValue = Float(allBudget)
+        hotelSlider.value = Float(hotelBudget)
+        mealSlider.maximumValue = Float(allBudget)
+        mealSlider.value = Float(mealBudget)
+        otherSlider.maximumValue = Float(allBudget)
+        otherSlider.value = Float(otherBudget)
         chartEntries.forEach { entry in
             switch entry.budgetType {
             case .flight:

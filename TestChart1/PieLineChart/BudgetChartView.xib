@@ -55,7 +55,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="GKm-DK-omY" secondAttribute="bottom" id="0mP-me-JOu"/>
                                                         <constraint firstItem="GKm-DK-omY" firstAttribute="leading" secondItem="Xx4-lK-OhU" secondAttribute="leading" id="Avv-Xk-1mH"/>
@@ -74,7 +74,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="i0B-Qh-TUS" firstAttribute="top" secondItem="h85-es-tay" secondAttribute="top" id="4Hj-mb-3kZ"/>
                                                         <constraint firstItem="i0B-Qh-TUS" firstAttribute="leading" secondItem="h85-es-tay" secondAttribute="leading" id="9Cc-0x-HnQ"/>
@@ -93,7 +93,7 @@
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="GGn-lm-WYj"/>
                                                         <constraint firstItem="EFF-0O-tII" firstAttribute="top" secondItem="bpo-4g-mKL" secondAttribute="top" id="ZMf-D5-wUO"/>
@@ -117,7 +117,7 @@
                                                             </connections>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="ZcU-eb-r4w" firstAttribute="top" secondItem="arU-PR-YXV" secondAttribute="top" id="GP0-Nc-Mm7"/>
                                                         <constraint firstItem="ZcU-eb-r4w" firstAttribute="centerX" secondItem="arU-PR-YXV" secondAttribute="centerX" id="cbN-bj-WXm"/>
@@ -125,6 +125,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="t5g-O3-lmf"/>
                                             </constraints>
