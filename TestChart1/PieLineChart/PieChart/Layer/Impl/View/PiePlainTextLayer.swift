@@ -48,7 +48,8 @@ open class PiePlainTextLayer: PieChartLayer {
         let size = (text as NSString).size(withAttributes: [ .font: settings.label.font])
         
 //        let center = settings.viewRadius.map{slice.view.midPoint(radius: $0)} ?? slice.view.arcCenter
-        let center = settings.viewRadius.map{slice.view.midPoint(radius: $0)} ?? slice.view.arcCenter
+//        let center = settings.viewRadius.map{slice.view.midPoint(radius: $0)} ?? slice.view.arcCenter
+        let center = slice.view.arcCenter
         
         let availableSize = CGSize(width: slice.view.maxRectWidth(center: center, height: size.height), height: size.height)
         

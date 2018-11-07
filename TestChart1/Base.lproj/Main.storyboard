@@ -18,14 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dZA-bD-G0X" customClass="BudgetChartView" customModule="TestChart1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="580" id="jnI-kP-gZ4"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dZA-bD-G0X" firstAttribute="top" secondItem="PCn-qR-fHc" secondAttribute="top" constant="30" id="2Zt-8u-6rk"/>
-                            <constraint firstItem="PCn-qR-fHc" firstAttribute="bottom" secondItem="dZA-bD-G0X" secondAttribute="bottom" id="aJU-2x-2Hp"/>
                             <constraint firstItem="dZA-bD-G0X" firstAttribute="leading" secondItem="PCn-qR-fHc" secondAttribute="leading" id="kt8-Y8-GfR"/>
                             <constraint firstItem="PCn-qR-fHc" firstAttribute="trailing" secondItem="dZA-bD-G0X" secondAttribute="trailing" id="v7W-xh-8n7"/>
                         </constraints>

@@ -8,9 +8,21 @@
 
 import UIKit
 
+
 class BudgetChartView: UIView {
     
+    var allBudget: Float = 0.0
+    var flightBudget: Float = 0.0
+    var hotelBudget: Float = 0.0
+    var mealBudget: Float = 0.0
+    var otherBudget: Float = 0.0
     var chartEntries: [ChartEntry] = []
+    
+    @IBAction func editBudget(_ sender: UIButton) {
+        editBudgetView.isHidden = false
+        budgetView.isHidden = true
+        editBudgetButtonView.isHidden = true
+    }
     
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var chartView: PieChart!
@@ -20,6 +32,7 @@ class BudgetChartView: UIView {
     @IBOutlet weak var otherSlider: UISlider!
     @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var editBudgetButton: UIButton!
+    @IBOutlet weak var editBudgetButtonView: UIView!
     @IBOutlet weak var budgetView: UIView!
     @IBOutlet weak var budgetTextField: UITextField!
     @IBOutlet weak var editBudgetView: UIView!
@@ -55,11 +68,40 @@ class BudgetChartView: UIView {
                                                       views: ["childView": view]))
         chartView.isUserInteractionEnabled = false
         editBudgetView.isHidden = true
-//        budgetView.isHidden = true
+        flightSlider.isUserInteractionEnabled = false
+        hotelSlider.isUserInteractionEnabled = false
+        mealSlider.isUserInteractionEnabled = true
+        otherSlider.isUserInteractionEnabled = true
     }
     
     func setChartEntries(entries: [ChartEntry]) {
         chartEntries = entries
+        budgetLabel.text = "\(allBudget)"
+        budgetTextField.text = "\(allBudget)"
+        flightSlider.maximumValue = allBudget
+        flightSlider.value = flightBudget
+        hotelSlider.maximumValue = allBudget
+        hotelSlider.value = hotelBudget
+        mealSlider.maximumValue = allBudget
+        mealSlider.value = mealBudget
+        otherSlider.maximumValue = allBudget
+        otherSlider.value = otherBudget
+        chartEntries.forEach { entry in
+            switch entry.budgetType {
+            case .flight:
+                flightSlider.minimumTrackTintColor = entry.color
+                flightSlider.maximumTrackTintColor = entry.color
+            case .hotel:
+                hotelSlider.minimumTrackTintColor = entry.color
+                hotelSlider.maximumTrackTintColor = entry.color
+            case .meal:
+                mealSlider.minimumTrackTintColor = entry.color
+                mealSlider.maximumTrackTintColor = entry.color
+            case .other:
+                otherSlider.minimumTrackTintColor = entry.color
+                otherSlider.maximumTrackTintColor = entry.color
+            }
+        }
     }
     
     fileprivate func createModels(entries: [ChartEntry]) -> [PieSliceModel] {
