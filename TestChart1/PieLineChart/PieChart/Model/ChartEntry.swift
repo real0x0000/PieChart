@@ -11,19 +11,18 @@ import UIKit
 enum BudgetType: Int {
     case flight = 0
     case hotel = 1
-    case meal = 2
-    case other = 3
+    case other = 2
 }
 
-struct ChartEntry {
+struct BudgetEntry {
     var budgetType: BudgetType
-    var value: Double
+    var budget: Double
     var color: UIColor
     var image: UIImage?
     
-    init(budgetType: BudgetType, value: Double, color: UIColor, image: UIImage?) {
+    init(budgetType: BudgetType, budget: Double, color: UIColor, image: UIImage?) {
         self.budgetType = budgetType
-        self.value = value
+        self.budget = budget
         self.color = color
         self.image = image
     }

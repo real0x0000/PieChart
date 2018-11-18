@@ -11,12 +11,14 @@ import UIKit
 
 class BudgetChartView: UIView {
     
-    var allBudget: Double = 0.0
+    var totalBudget: Double = 0.0
+    var minFlightBudget: Double = 0.0
+    var minHotelBudget: Double = 0.0
     var flightBudget: Double = 0.0
     var hotelBudget: Double = 0.0
-    var mealBudget: Double = 0.0
     var otherBudget: Double = 0.0
-    var chartEntries: [ChartEntry] = []
+    var budgetDict: [BudgetType: BudgetEntry] = [:]
+    var budgetEntries: [BudgetEntry] = []
     
     @IBAction func editBudget(_ sender: UIButton) {
         editBudgetView.isHidden = false
@@ -28,7 +30,6 @@ class BudgetChartView: UIView {
     @IBOutlet weak var chartView: PieChart!
     @IBOutlet weak var flightSlider: UISlider!
     @IBOutlet weak var hotelSlider: UISlider!
-    @IBOutlet weak var mealSlider: UISlider!
     @IBOutlet weak var otherSlider: UISlider!
     @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var editBudgetButton: UIButton!
@@ -37,9 +38,32 @@ class BudgetChartView: UIView {
     @IBOutlet weak var budgetTextField: UITextField!
     @IBOutlet weak var editBudgetView: UIView!
     
-    
-    @IBAction func slide(_ sender: UISlider) {
-        print(chartView.frame)
+    @IBAction func slideValueChanged(_ sender: UISlider) {
+        switch sender {
+        case flightSlider:
+            if flightSlider.value < Float(minFlightBudget) {
+                flightSlider.value = Float(minFlightBudget)
+            }
+            else if flightSlider.value > Float(totalBudget - hotelBudget) {
+                flightSlider.value = Float(totalBudget - hotelBudget)
+            }
+            flightBudget = Double(flightSlider.value)
+        case hotelSlider:
+            if hotelSlider.value < Float(minHotelBudget) {
+                hotelSlider.value = Float(minHotelBudget)
+            }
+            else if hotelSlider.value > Float(totalBudget - flightBudget) {
+                hotelSlider.value = Float(totalBudget - flightBudget)
+            }
+            hotelBudget = Double(hotelSlider.value)
+        case otherSlider:
+            if otherSlider.value > Float(totalBudget - (flightBudget + hotelBudget)) {
+                otherSlider.value = Float(totalBudget - (flightBudget + hotelBudget))
+            }
+            otherBudget = Double(otherSlider.value)
+        default:
+            break
+        }
     }
     
     override init(frame: CGRect) {
@@ -54,7 +78,6 @@ class BudgetChartView: UIView {
     
     fileprivate func setup() {
         view = loadNib()
-        print(UIScreen.main.bounds)
         view.frame = UIScreen.main.bounds
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -68,44 +91,46 @@ class BudgetChartView: UIView {
                                                       views: ["childView": view]))
         chartView.isUserInteractionEnabled = false
         editBudgetView.isHidden = true
-        flightSlider.isUserInteractionEnabled = false
-        hotelSlider.isUserInteractionEnabled = false
-        mealSlider.isUserInteractionEnabled = true
+        flightSlider.isUserInteractionEnabled = true
+        hotelSlider.isUserInteractionEnabled = true
         otherSlider.isUserInteractionEnabled = true
     }
     
-    func setChartEntries(entries: [ChartEntry]) {
-        chartEntries = entries
-        budgetLabel.text = "\(allBudget)"
-        budgetTextField.text = "\(allBudget)"
-        flightSlider.maximumValue = Float(allBudget)
-        flightSlider.value = Float(flightBudget)
-        hotelSlider.maximumValue = Float(allBudget)
-        hotelSlider.value = Float(hotelBudget)
-        mealSlider.maximumValue = Float(allBudget)
-        mealSlider.value = Float(mealBudget)
-        otherSlider.maximumValue = Float(allBudget)
-        otherSlider.value = Float(otherBudget)
-        chartEntries.forEach { entry in
-            switch entry.budgetType {
-            case .flight:
-                flightSlider.minimumTrackTintColor = entry.color
-                flightSlider.maximumTrackTintColor = entry.color
-            case .hotel:
-                hotelSlider.minimumTrackTintColor = entry.color
-                hotelSlider.maximumTrackTintColor = entry.color
-            case .meal:
-                mealSlider.minimumTrackTintColor = entry.color
-                mealSlider.maximumTrackTintColor = entry.color
-            case .other:
-                otherSlider.minimumTrackTintColor = entry.color
-                otherSlider.maximumTrackTintColor = entry.color
-            }
+    func initChartValue(with dict: [BudgetType: BudgetEntry]) {
+        var sumBudget: Double = 0.0
+        budgetDict = dict
+        budgetDict.forEach { (dict) in
+            sumBudget += dict.value.budget
+        }
+        totalBudget = sumBudget
+        budgetLabel.text = "\(totalBudget)"
+        budgetTextField.text = "\(totalBudget)"
+        if let flightEntry = budgetDict[.flight] {
+            flightSlider.minimumTrackTintColor = flightEntry.color
+            flightSlider.maximumTrackTintColor = flightEntry.color
+            flightSlider.maximumValue = Float(totalBudget)
+            flightSlider.value = Float(flightEntry.budget)
+            minFlightBudget = flightEntry.budget
+            flightBudget = flightEntry.budget
+        }
+        if let hotelEntry = budgetDict[.hotel] {
+            hotelSlider.minimumTrackTintColor = hotelEntry.color
+            hotelSlider.maximumTrackTintColor = hotelEntry.color
+            hotelSlider.maximumValue = Float(totalBudget)
+            hotelSlider.value = Float(hotelEntry.budget)
+            minHotelBudget = hotelEntry.budget
+            hotelBudget = hotelEntry.budget
+        }
+        if let otherEntry = budgetDict[.other] {
+            otherSlider.minimumTrackTintColor = otherEntry.color
+            otherSlider.maximumTrackTintColor = otherEntry.color
+            otherSlider.maximumValue = Float(totalBudget)
+            otherSlider.value = Float(otherEntry.budget)
         }
     }
     
-    fileprivate func createModels(entries: [ChartEntry]) -> [PieSliceModel] {
-        let sliceModels = entries.map { PieSliceModel(value: $0.value, color: $0.color) }
+    fileprivate func createModels(budgetDict: [BudgetType: BudgetEntry]) -> [PieSliceModel] {
+        let sliceModels = budgetDict.map { PieSliceModel(value: $0.value.budget, color: $0.value.color) }
         return sliceModels
     }
     
@@ -136,22 +161,25 @@ class BudgetChartView: UIView {
     }
     
     fileprivate func createViewGenerator() -> (PieSlice, CGPoint) -> UIView {
-        return { [weak self] slice, center in
+        return { slice, center in
             let container = UIView()
             container.frame.size = CGSize(width: 100, height: 40)
             container.center = center
             let view = UIImageView()
-            view.backgroundColor = self?.chartEntries[slice.data.id].color
+            view.backgroundColor = Array(self.budgetDict)[slice.data.id].value.color
+            let entry = Array(self.budgetDict)[slice.data.id].value
+            view.backgroundColor = entry.color
             view.frame = CGRect(x: 30, y: 0, width: 40, height: 40)
             view.layer.cornerRadius = view.frame.size.height / 2
             container.addSubview(view)
-            view.image = self?.chartEntries[slice.data.id].image
+            view.image = entry.image?.withRenderingMode(.alwaysTemplate)
+            view.tintColor = UIColor.white
             return container
         }
     }
     
     func updateChart() {
-        chartView.models = createModels(entries: chartEntries)
+        chartView.models = createModels(budgetDict: budgetDict)
         chartView.layers = [createCustomViewsLayer(), createTextLayer()]
     }
     
