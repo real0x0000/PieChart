@@ -58,8 +58,6 @@ open class PieSliceLayer: CALayer, CAAnimationDelegate {
     }
     
     public var arcCenter: CGPoint {
-        print(outerRadius)
-        print(innerRadius)
         let position = calculatePosition(angle: midAngle, p: center, offset: (outerRadius - innerRadius) / 2 + innerRadius)
 //        return calculatePosition(angle: midAngle, p: center, offset: (outerRadius - innerRadius) / 2 + innerRadius)
         return position
@@ -242,8 +240,6 @@ open class PieSliceLayer: CALayer, CAAnimationDelegate {
     }
     
     public func calculatePosition(angle: CGFloat, p: CGPoint, offset: CGFloat) -> CGPoint {
-        print(outerRadius)
-        print(innerRadius)
         return CGPoint(x: p.x + offset * cos(angle), y: p.y + offset * sin(angle))
     }
     

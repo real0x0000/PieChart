@@ -25,8 +25,17 @@ class MainViewController: UIViewController {
         dict[.flight] = flightEntry
         dict[.hotel] = hotelEntry
         dict[.other] = otherEntry
+        budgetChart.delegate = self
         budgetChart.initChartValue(with: dict)
         budgetChart.updateChart()
+    }
+    
+}
+
+extension MainViewController: BudgetChartDelegate {
+    
+    func currentBudget(budgetDict: [BudgetType : BudgetEntry]) {
+        print(budgetDict)
     }
     
 }

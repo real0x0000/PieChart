@@ -8,6 +8,9 @@
 
 import UIKit
 
+protocol BudgetChartDelegate {
+    func currentBudget(budgetDict: [BudgetType: BudgetEntry])
+}
 
 class BudgetChartView: UIView {
     
@@ -18,7 +21,7 @@ class BudgetChartView: UIView {
     var hotelBudget: Double = 0.0
     var otherBudget: Double = 0.0
     var budgetDict: [BudgetType: BudgetEntry] = [:]
-    var budgetEntries: [BudgetEntry] = []
+    var delegate: BudgetChartDelegate?
     
     @IBAction func editBudget(_ sender: UIButton) {
         editBudgetView.isHidden = false
@@ -48,6 +51,8 @@ class BudgetChartView: UIView {
                 flightSlider.value = Float(totalBudget - hotelBudget)
             }
             flightBudget = Double(flightSlider.value)
+            otherSlider.value = Float(totalBudget - flightBudget - hotelBudget)
+            otherBudget = totalBudget - flightBudget - hotelBudget
         case hotelSlider:
             if hotelSlider.value < Float(minHotelBudget) {
                 hotelSlider.value = Float(minHotelBudget)
@@ -56,6 +61,8 @@ class BudgetChartView: UIView {
                 hotelSlider.value = Float(totalBudget - flightBudget)
             }
             hotelBudget = Double(hotelSlider.value)
+            otherSlider.value = Float(totalBudget - flightBudget - hotelBudget)
+            otherBudget = totalBudget - flightBudget - hotelBudget
         case otherSlider:
             if otherSlider.value > Float(totalBudget - (flightBudget + hotelBudget)) {
                 otherSlider.value = Float(totalBudget - (flightBudget + hotelBudget))
@@ -64,6 +71,7 @@ class BudgetChartView: UIView {
         default:
             break
         }
+        updateDictValue()
     }
     
     override init(frame: CGRect) {
@@ -90,6 +98,7 @@ class BudgetChartView: UIView {
                                                       metrics: nil,
                                                       views: ["childView": view]))
         chartView.isUserInteractionEnabled = false
+        chartView.animDuration = 0.0001
         editBudgetView.isHidden = true
         flightSlider.isUserInteractionEnabled = true
         hotelSlider.isUserInteractionEnabled = true
@@ -178,7 +187,16 @@ class BudgetChartView: UIView {
         }
     }
     
+    func updateDictValue() {
+        budgetDict[.flight]?.budget = flightBudget
+        budgetDict[.hotel]?.budget = hotelBudget
+        budgetDict[.other]?.budget = otherBudget
+        delegate?.currentBudget(budgetDict: budgetDict)
+        updateChart()
+    }
+    
     func updateChart() {
+        chartView.clear()
         chartView.models = createModels(budgetDict: budgetDict)
         chartView.layers = [createCustomViewsLayer(), createTextLayer()]
     }

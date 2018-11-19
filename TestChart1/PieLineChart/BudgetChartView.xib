@@ -89,7 +89,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="21"/>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -132,13 +132,13 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="41V-WC-HgM" firstAttribute="centerX" secondItem="CBF-72-Tmd" secondAttribute="centerX" id="ELN-ZK-kcG"/>
-                                        <constraint firstItem="41V-WC-HgM" firstAttribute="centerY" secondItem="CBF-72-Tmd" secondAttribute="centerY" id="NBr-dg-a66"/>
+                                        <constraint firstItem="41V-WC-HgM" firstAttribute="centerY" secondItem="JxO-E8-sbx" secondAttribute="centerY" id="0rY-t1-amn"/>
                                         <constraint firstItem="JxO-E8-sbx" firstAttribute="leading" secondItem="CBF-72-Tmd" secondAttribute="leading" id="TQ5-GI-Ayv"/>
                                         <constraint firstItem="JxO-E8-sbx" firstAttribute="top" secondItem="CBF-72-Tmd" secondAttribute="top" id="Z4L-y2-3zZ"/>
                                         <constraint firstAttribute="trailing" secondItem="JxO-E8-sbx" secondAttribute="trailing" id="cLy-Rq-lfE"/>
                                         <constraint firstAttribute="height" constant="300" id="d1b-hT-3j9"/>
                                         <constraint firstAttribute="bottom" secondItem="JxO-E8-sbx" secondAttribute="bottom" id="iem-E4-0jV"/>
+                                        <constraint firstItem="41V-WC-HgM" firstAttribute="centerX" secondItem="JxO-E8-sbx" secondAttribute="centerX" id="raN-MV-Gg7"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iie-vt-7UO">
