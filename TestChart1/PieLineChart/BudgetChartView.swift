@@ -3,7 +3,7 @@
 //  TestChart1
 //
 //  Created by ANUWAT SITTICCHAK on 22/10/2561 BE.
-//  Copyright © 2561 ANUWAT SITTICCHAK. All rights reserved.
+//  Copyright © 2561 ANUWAT SITTICHAK. All rights reserved.
 //
 
 import UIKit
@@ -103,6 +103,50 @@ class BudgetChartView: UIView {
         flightSlider.isUserInteractionEnabled = true
         hotelSlider.isUserInteractionEnabled = true
         otherSlider.isUserInteractionEnabled = true
+        flightSlider.isContinuous = false
+        hotelSlider.isContinuous = false
+        otherSlider.isContinuous = false
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(BudgetChartView.doneKeyboardInput))
+        toolBar.items = [flexSpace, doneButton]
+        budgetTextField.inputAccessoryView = toolBar
+    }
+    
+    @objc func doneKeyboardInput() {
+        self.view.endEditing(true)
+        if let budgetInput = budgetTextField.text {
+            if let dBudget = Double(budgetInput) {
+                if dBudget < (minFlightBudget + minHotelBudget) {
+                    
+                }
+                else {
+                    if dBudget < totalBudget {
+                        flightBudget = minFlightBudget
+                        hotelBudget = minHotelBudget
+                    }
+                    totalBudget = dBudget
+                    reCalculateBudget()
+                }
+                budgetTextField.text = "\(totalBudget)"
+                budgetLabel.text = "\(totalBudget)"
+                editBudgetView.isHidden = true
+                budgetView.isHidden = false
+                editBudgetButtonView.isHidden = false
+            }
+        }
+    }
+    
+    func reCalculateBudget() {
+        otherBudget = totalBudget - flightBudget - hotelBudget
+        flightSlider.maximumValue = Float(totalBudget)
+        hotelSlider.maximumValue = Float(totalBudget)
+        otherSlider.maximumValue = Float(totalBudget)
+        otherSlider.value = Float(otherBudget)
+        flightSlider.value = Float(flightBudget)
+        hotelSlider.value = Float(hotelBudget)
+        updateDictValue()
     }
     
     func initChartValue(with dict: [BudgetType: BudgetEntry]) {
