@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "BudgetChartView.sliderDidEndSliding():BudgetChartView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BudgetChartView.flightBudget.didset:BudgetChartView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in BudgetChartView.createViewGenerator():BudgetChartView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Array(self.budgetDict)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BudgetChartView.slideValueChanged(_:):BudgetChartView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BudgetChartView.otherBudget.didset:BudgetChartView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BudgetChartView.setup():BudgetChartView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "otherSlider.inputAccessoryView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F561BCB21A98905004B42DD /* SliderTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F561BCA21A98905004B42DD /* SliderTextView.xib */; };
+		0F561BCD21A98A1F004B42DD /* SliderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F561BCC21A98A1F004B42DD /* SliderTextView.swift */; };
+		0F561BCF21A98C8F004B42DD /* TumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F561BCE21A98C8F004B42DD /* TumbView.swift */; };
 		3670FE40217E04AB00AF0E36 /* ChartEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3670FE3F217E04AB00AF0E36 /* ChartEntry.swift */; };
 		36C17717217DFCAC00BF31DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C17716217DFCAC00BF31DE /* AppDelegate.swift */; };
 		36C17719217DFCAC00BF31DE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C17718217DFCAC00BF31DE /* MainViewController.swift */; };
@@ -57,6 +60,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F561BCA21A98905004B42DD /* SliderTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SliderTextView.xib; sourceTree = "<group>"; };
+		0F561BCC21A98A1F004B42DD /* SliderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTextView.swift; sourceTree = "<group>"; };
+		0F561BCE21A98C8F004B42DD /* TumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TumbView.swift; sourceTree = "<group>"; };
 		3670FE3F217E04AB00AF0E36 /* ChartEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntry.swift; sourceTree = "<group>"; };
 		36C17713217DFCAC00BF31DE /* TestChart1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestChart1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36C17716217DFCAC00BF31DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +183,9 @@
 			children = (
 				36C17744217DFD0400BF31DE /* BudgetChartView.xib */,
 				36C17746217DFD5100BF31DE /* BudgetChartView.swift */,
+				0F561BCA21A98905004B42DD /* SliderTextView.xib */,
+				0F561BCC21A98A1F004B42DD /* SliderTextView.swift */,
+				0F561BCE21A98C8F004B42DD /* TumbView.swift */,
 				36C17749217DFD7A00BF31DE /* PieChart */,
 			);
 			path = PieLineChart;
@@ -397,6 +406,7 @@
 				36C17745217DFD0400BF31DE /* BudgetChartView.xib in Resources */,
 				36C17721217DFCAD00BF31DE /* LaunchScreen.storyboard in Resources */,
 				36C1771E217DFCAD00BF31DE /* Assets.xcassets in Resources */,
+				0F561BCB21A98905004B42DD /* SliderTextView.xib in Resources */,
 				36C1771C217DFCAC00BF31DE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,12 +449,14 @@
 				36C1776D217DFF2B00BF31DE /* PieCustomViewsLayer.swift in Sources */,
 				3670FE40217E04AB00AF0E36 /* ChartEntry.swift in Sources */,
 				36C17754217DFE3000BF31DE /* PieSlice.swift in Sources */,
+				0F561BCD21A98A1F004B42DD /* SliderTextView.swift in Sources */,
 				36C1775B217DFE6600BF31DE /* PieSliceModel.swift in Sources */,
 				36C1774B217DFDC700BF31DE /* PieChart.swift in Sources */,
 				36C17769217DFEDC00BF31DE /* PieChartLayer.swift in Sources */,
 				36C17717217DFCAC00BF31DE /* AppDelegate.swift in Sources */,
 				36C17766217DFEBD00BF31DE /* Int.swift in Sources */,
 				36C17759217DFE5C00BF31DE /* PieSliceData.swift in Sources */,
+				0F561BCF21A98C8F004B42DD /* TumbView.swift in Sources */,
 				36C17747217DFD5100BF31DE /* BudgetChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
