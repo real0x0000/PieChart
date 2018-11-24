@@ -14,12 +14,31 @@ protocol BudgetChartDelegate {
 
 class BudgetChartView: UIView {
     
+    var isValueChanged = false
     var totalBudget: Double = 0.0
     var minFlightBudget: Double = 0.0
     var minHotelBudget: Double = 0.0
-    var flightBudget: Double = 0.0
-    var hotelBudget: Double = 0.0
-    var otherBudget: Double = 0.0
+    var flightBudget: Double = 0.0{
+        didSet{
+            if !isValueChanged {
+                isValueChanged = flightBudget != oldValue
+            }
+        }
+    }
+    var hotelBudget: Double = 0.0 {
+        didSet{
+            if !isValueChanged {
+                isValueChanged = hotelBudget != oldValue
+            }
+        }
+    }
+    var otherBudget: Double = 0.0 {
+        didSet{
+            if !isValueChanged {
+                isValueChanged = otherBudget != oldValue
+            }
+        }
+    }
     var budgetDict: [BudgetType: BudgetEntry] = [:]
     var delegate: BudgetChartDelegate?
     
@@ -71,7 +90,14 @@ class BudgetChartView: UIView {
         default:
             break
         }
-        updateDictValue()
+        //        updateDictValue()
+    }
+    
+    @objc func sliderDidEndSliding() {
+        if isValueChanged {
+            isValueChanged = false
+            updateDictValue()
+        }
     }
     
     override init(frame: CGRect) {
@@ -103,9 +129,9 @@ class BudgetChartView: UIView {
         flightSlider.isUserInteractionEnabled = true
         hotelSlider.isUserInteractionEnabled = true
         otherSlider.isUserInteractionEnabled = true
-        flightSlider.isContinuous = false
-        hotelSlider.isContinuous = false
-        otherSlider.isContinuous = false
+        flightSlider.addTarget(self, action: #selector(sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
+        hotelSlider.addTarget(self, action: #selector(sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
+        otherSlider.addTarget(self, action: #selector(sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -183,7 +209,7 @@ class BudgetChartView: UIView {
     }
     
     fileprivate func createModels(budgetDict: [BudgetType: BudgetEntry]) -> [PieSliceModel] {
-        let sliceModels = budgetDict.map { PieSliceModel(value: $0.value.budget, color: $0.value.color) }
+        let sliceModels = budgetDict.filter({$0.value.budget > 0}).map { PieSliceModel(value: $0.value.budget, color: $0.value.color) }
         return sliceModels
     }
     
@@ -219,8 +245,9 @@ class BudgetChartView: UIView {
             container.frame.size = CGSize(width: 100, height: 40)
             container.center = center
             let view = UIImageView()
-            view.backgroundColor = Array(self.budgetDict)[slice.data.id].value.color
-            let entry = Array(self.budgetDict)[slice.data.id].value
+            let array = Array(self.budgetDict.filter({$0.value.budget > 0}))
+            view.backgroundColor = array[slice.data.id].value.color
+            let entry = array[slice.data.id].value
             view.backgroundColor = entry.color
             view.frame = CGRect(x: 30, y: 0, width: 40, height: 40)
             view.layer.cornerRadius = view.frame.size.height / 2
