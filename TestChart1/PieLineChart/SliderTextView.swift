@@ -13,11 +13,51 @@ class SliderTextView: UIView {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var thumbview: TumbView!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
+    var value : Float {
+        get{
+            return slider.value
+        }
+        set{
+            slider.value = newValue
+        }
+    }
+    
+    var maximumValue : Float {
+        get{
+            return slider.maximumValue
+        }
+        set{
+            slider.maximumValue = newValue
+        }
+    }
+    
+    var minimumTrackTintColor : UIColor? {
+        get{
+            return slider.minimumTrackTintColor
+        }
+        set{
+            slider.minimumTrackTintColor = newValue
+        }
+    }
+    
+    var maximumTrackTintColor : UIColor? {
+        get{
+            return slider.maximumTrackTintColor
+        }
+        set{
+            slider.maximumTrackTintColor = newValue
+        }
+    }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         let x = Int(round(sender.value))
         thumbview.label.text = "\(x)"
-        thumbview.center = setUISliderThumbValueWithLabel(slider: sender)
+        thumbview.label.layoutIfNeeded()
+        thumbview.layoutIfNeeded()
+        print("x: \(getX(slider: sender)) , r: \(getX(slider: sender) - thumbview.frame.width / 2)")
+        leadingConstraint.constant = getX(slider: sender)
     }
     
     override init(frame: CGRect) {
@@ -44,12 +84,13 @@ class SliderTextView: UIView {
                                                       metrics: nil,
                                                       views: ["childView": view]))
         thumbview.targetView = slider
+        sliderValueChanged(slider)
     }
     
-    func setUISliderThumbValueWithLabel(slider: UISlider) -> CGPoint {
+    func getX(slider: UISlider) -> CGFloat {
         let slidertTrack : CGRect = slider.trackRect(forBounds: slider.bounds)
         let sliderFrm : CGRect = slider .thumbRect(forBounds: slider.bounds, trackRect: slidertTrack, value: slider.value)
-        return CGPoint(x: sliderFrm.origin.x + slider.frame.origin.x + 8, y: slider.center.y)
+        return sliderFrm.origin.x + slider.frame.origin.x
     }
 }
 

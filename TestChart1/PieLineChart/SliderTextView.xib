@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SliderTextView" customModule="TestChart1" customModuleProvider="target">
             <connections>
+                <outlet property="leadingConstraint" destination="lQp-aP-yhe" id="EVp-u4-134"/>
                 <outlet property="slider" destination="Dnr-sR-H60" id="YNm-9U-cGw"/>
                 <outlet property="thumbview" destination="9Zd-gq-VpI" id="ysI-v9-osI"/>
                 <outlet property="view" destination="iN0-l3-epB" id="epg-tG-Dbf"/>
@@ -29,11 +30,11 @@
                                 <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="piK-t1-h6R"/>
                             </connections>
                         </slider>
-                        <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Zd-gq-VpI" customClass="TumbView" customModule="TestChart1" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="11" width="53" height="41"/>
+                        <view verifyAmbiguity="off" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Zd-gq-VpI" customClass="TumbView" customModule="TestChart1" customModuleProvider="target">
+                            <rect key="frame" x="8" y="0.0" width="42" height="54"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOg-f7-ZZj">
-                                    <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="42" height="54"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -41,11 +42,10 @@
                             </subviews>
                             <color key="backgroundColor" red="0.27450980390000002" green="0.70196078429999997" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="HOg-f7-ZZj" firstAttribute="leading" secondItem="9Zd-gq-VpI" secondAttribute="leading" id="0fP-Lj-wzD"/>
                                 <constraint firstItem="HOg-f7-ZZj" firstAttribute="top" secondItem="9Zd-gq-VpI" secondAttribute="top" id="B6v-Il-a44"/>
                                 <constraint firstAttribute="trailing" secondItem="HOg-f7-ZZj" secondAttribute="trailing" id="E1i-I9-tyH"/>
-                                <constraint firstItem="HOg-f7-ZZj" firstAttribute="leading" secondItem="9Zd-gq-VpI" secondAttribute="leading" id="O5e-ur-OTJ"/>
                                 <constraint firstAttribute="bottom" secondItem="HOg-f7-ZZj" secondAttribute="bottom" id="Re6-Ik-4RO"/>
+                                <constraint firstItem="HOg-f7-ZZj" firstAttribute="leading" secondItem="9Zd-gq-VpI" secondAttribute="leading" id="rBh-Gy-XzE"/>
                             </constraints>
                             <connections>
                                 <outlet property="label" destination="HOg-f7-ZZj" id="cIS-W7-bSI"/>
@@ -56,8 +56,11 @@
                     <constraints>
                         <constraint firstItem="Dnr-sR-H60" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="AzL-SC-LjP"/>
                         <constraint firstItem="Dnr-sR-H60" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HQk-vM-jh8"/>
+                        <constraint firstItem="9Zd-gq-VpI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Igt-Pl-iD2"/>
                         <constraint firstAttribute="trailing" secondItem="Dnr-sR-H60" secondAttribute="trailing" id="Jnz-ZI-aKt"/>
                         <constraint firstAttribute="bottom" secondItem="Dnr-sR-H60" secondAttribute="bottom" id="OH2-vv-3rZ"/>
+                        <constraint firstItem="9Zd-gq-VpI" firstAttribute="height" secondItem="Dnr-sR-H60" secondAttribute="height" id="kBG-Kh-2Tl"/>
+                        <constraint firstItem="9Zd-gq-VpI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="lQp-aP-yhe"/>
                     </constraints>
                 </view>
             </subviews>

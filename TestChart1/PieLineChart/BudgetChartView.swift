@@ -50,7 +50,7 @@ class BudgetChartView: UIView {
     
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var chartView: PieChart!
-    @IBOutlet weak var flightSlider: UISlider!
+    @IBOutlet weak var flightSlider: SliderTextView!
     @IBOutlet weak var hotelSlider: UISlider!
     @IBOutlet weak var otherSlider: UISlider!
     @IBOutlet weak var budgetLabel: UILabel!
@@ -129,7 +129,7 @@ class BudgetChartView: UIView {
         flightSlider.isUserInteractionEnabled = true
         hotelSlider.isUserInteractionEnabled = true
         otherSlider.isUserInteractionEnabled = true
-        flightSlider.addTarget(self, action: #selector(sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
+        flightSlider.slider.addTarget(self, action: #selector(sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
         hotelSlider.addTarget(self, action: #selector(sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
         otherSlider.addTarget(self, action: #selector(sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
         

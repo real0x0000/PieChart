@@ -3,10 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SliderTextView.sliderValueChanged(_:):SliderTextView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "thumbview.center">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BudgetChartView.slideValueChanged(_:):BudgetChartView.swift">
+      </ContextState>
+      <ContextState
          contextName = "BudgetChartView.sliderDidEndSliding():BudgetChartView.swift">
       </ContextState>
       <ContextState
-         contextName = "BudgetChartView.flightBudget.didset:BudgetChartView.swift">
+         contextName = "BudgetChartView.otherBudget.didset:BudgetChartView.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in BudgetChartView.createViewGenerator():BudgetChartView.swift">
@@ -17,18 +28,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "BudgetChartView.slideValueChanged(_:):BudgetChartView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "BudgetChartView.otherBudget.didset:BudgetChartView.swift">
-      </ContextState>
-      <ContextState
          contextName = "BudgetChartView.setup():BudgetChartView.swift">
          <PersistentStrings>
             <PersistentString
                value = "otherSlider.inputAccessoryView">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BudgetChartView.flightBudget.didset:BudgetChartView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
