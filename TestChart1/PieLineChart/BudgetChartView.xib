@@ -18,6 +18,8 @@
                 <outlet property="editBudgetButtonView" destination="arU-PR-YXV" id="Yyi-lW-V8I"/>
                 <outlet property="editBudgetView" destination="bpo-4g-mKL" id="lw7-MO-VUT"/>
                 <outlet property="flightSlider" destination="MPp-Ca-cQx" id="Kl4-ve-hlK"/>
+                <outlet property="flightValueLabel" destination="OpJ-yL-Fww" id="0xO-oq-M8n"/>
+                <outlet property="flightValueView" destination="9bb-CF-yba" id="o9p-Lm-fw5"/>
                 <outlet property="hotelSlider" destination="Yid-sY-BIi" id="iAB-xv-iDZ"/>
                 <outlet property="otherSlider" destination="4xr-WO-yiA" id="yrR-Wx-Mjn"/>
                 <outlet property="view" destination="3v3-ij-6S7" id="BUf-3Q-cjB"/>
@@ -179,12 +181,34 @@
                                                 <action selector="slideValueChanged:" destination="-1" eventType="valueChanged" id="LbL-Rx-mde"/>
                                             </connections>
                                         </slider>
+                                        <view verifyAmbiguity="off" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bb-CF-yba">
+                                            <rect key="frame" x="67" y="20" width="240" height="30"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OpJ-yL-Fww">
+                                                    <rect key="frame" x="8" y="0.0" width="42" height="30"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="OpJ-yL-Fww" secondAttribute="trailing" constant="8" id="D5I-Bw-7cX"/>
+                                                <constraint firstAttribute="bottom" secondItem="OpJ-yL-Fww" secondAttribute="bottom" id="Kjg-gB-74M"/>
+                                                <constraint firstItem="OpJ-yL-Fww" firstAttribute="top" secondItem="9bb-CF-yba" secondAttribute="top" id="Rdu-y8-9u8"/>
+                                                <constraint firstItem="OpJ-yL-Fww" firstAttribute="leading" secondItem="9bb-CF-yba" secondAttribute="leading" constant="8" id="dAd-UY-E4n"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="WDk-vR-tR0" firstAttribute="leading" secondItem="Iie-vt-7UO" secondAttribute="leading" constant="30" id="8bf-b8-7FM"/>
                                         <constraint firstAttribute="height" constant="70" id="Ahc-5y-X1g"/>
+                                        <constraint firstItem="9bb-CF-yba" firstAttribute="height" secondItem="MPp-Ca-cQx" secondAttribute="height" id="F1B-LC-Dye"/>
                                         <constraint firstItem="MPp-Ca-cQx" firstAttribute="centerY" secondItem="Iie-vt-7UO" secondAttribute="centerY" id="Li6-qZ-bmk"/>
+                                        <constraint firstItem="9bb-CF-yba" firstAttribute="bottom" secondItem="MPp-Ca-cQx" secondAttribute="bottom" id="YCx-XL-2ZD"/>
                                         <constraint firstItem="WDk-vR-tR0" firstAttribute="top" secondItem="Iie-vt-7UO" secondAttribute="top" constant="10" id="jvp-ge-R77"/>
+                                        <constraint firstItem="9bb-CF-yba" firstAttribute="top" secondItem="MPp-Ca-cQx" secondAttribute="top" id="l79-QP-Ja0"/>
                                         <constraint firstItem="MPp-Ca-cQx" firstAttribute="leading" secondItem="WDk-vR-tR0" secondAttribute="trailing" constant="10" id="mby-a5-FUW"/>
                                         <constraint firstAttribute="bottom" secondItem="WDk-vR-tR0" secondAttribute="bottom" constant="10" id="olt-Md-YNV"/>
                                         <constraint firstAttribute="trailing" secondItem="MPp-Ca-cQx" secondAttribute="trailing" constant="30" id="wj6-u6-BRl"/>

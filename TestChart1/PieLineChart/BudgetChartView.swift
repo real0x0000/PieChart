@@ -59,6 +59,8 @@ class BudgetChartView: UIView {
     @IBOutlet weak var budgetView: UIView!
     @IBOutlet weak var budgetTextField: UITextField!
     @IBOutlet weak var editBudgetView: UIView!
+    @IBOutlet weak var flightValueView: UIView!
+    @IBOutlet weak var flightValueLabel: UILabel!
     
     @IBAction func slideValueChanged(_ sender: UISlider) {
         switch sender {
@@ -72,6 +74,7 @@ class BudgetChartView: UIView {
             flightBudget = Double(flightSlider.value)
             otherSlider.value = Float(totalBudget - flightBudget - hotelBudget)
             otherBudget = totalBudget - flightBudget - hotelBudget
+            updateFlightLabelPosition()
         case hotelSlider:
             if hotelSlider.value < Float(minHotelBudget) {
                 hotelSlider.value = Float(minHotelBudget)
@@ -90,7 +93,6 @@ class BudgetChartView: UIView {
         default:
             break
         }
-        //        updateDictValue()
     }
     
     @objc func sliderDidEndSliding() {
@@ -138,6 +140,24 @@ class BudgetChartView: UIView {
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(BudgetChartView.doneKeyboardInput))
         toolBar.items = [flexSpace, doneButton]
         budgetTextField.inputAccessoryView = toolBar
+        flightValueView.layer.masksToBounds = true
+        flightValueView.layer.cornerRadius = flightValueView.frame.height / 2
+    }
+    
+    func updateFlightLabelPosition() {
+        DispatchQueue.main.async { [weak self] in
+            guard let sliderBounds = self?.flightSlider.bounds else { return }
+            guard let sliderValue = self?.flightSlider.value else { return }
+            guard let flightTrackRect = self?.flightSlider.trackRect(forBounds: sliderBounds) else { return }
+            guard let flightThumbRect = self?.flightSlider.thumbRect(forBounds: sliderBounds, trackRect: flightTrackRect, value: sliderValue) else { return }
+            guard let slideFrame = self?.flightSlider.frame else { return }
+            self?.flightValueLabel.text = "\(Int(sliderValue))"
+            
+            let center = CGPoint(x: flightThumbRect.center.x + slideFrame.origin.x, y: slideFrame.center.y)
+            self?.flightValueView.center = center
+            self?.flightValueView.setNeedsLayout()
+            self?.flightValueView.layoutIfNeeded()
+        }
     }
     
     @objc func doneKeyboardInput() {
@@ -172,6 +192,7 @@ class BudgetChartView: UIView {
         otherSlider.value = Float(otherBudget)
         flightSlider.value = Float(flightBudget)
         hotelSlider.value = Float(hotelBudget)
+        updateFlightLabelPosition()
         updateDictValue()
     }
     
@@ -191,6 +212,7 @@ class BudgetChartView: UIView {
             flightSlider.value = Float(flightEntry.budget)
             minFlightBudget = flightEntry.budget
             flightBudget = flightEntry.budget
+            updateFlightLabelPosition()
         }
         if let hotelEntry = budgetDict[.hotel] {
             hotelSlider.minimumTrackTintColor = hotelEntry.color
