@@ -3,7 +3,7 @@
 //  TestChart1
 //
 //  Created by Feyverly on 24/11/2561 BE.
-//  Copyright © 2561 ANUWAT SITTICCHAK. All rights reserved.
+//  Copyright © 2561 ANUWAT SITTICHAK. All rights reserved.
 //
 
 import UIKit

@@ -3,15 +3,21 @@
 //  TestChart1
 //
 //  Created by Feyverly on 24/11/2561 BE.
-//  Copyright © 2561 ANUWAT SITTICCHAK. All rights reserved.
+//  Copyright © 2561 ANUWAT SITTICHAK. All rights reserved.
 //
 
 import UIKit
 
+protocol SliderTextViewDelegate {
+    func valueChanged(_ value: Float, type: BudgetType)
+}
+
 class SliderTextView: UIView {
     
+    var delegate: SliderTextViewDelegate?
+    
     @IBOutlet weak var view: UIView!
-    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var slider: BudgetSlider!
     @IBOutlet weak var thumbview: TumbView!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     
@@ -20,7 +26,9 @@ class SliderTextView: UIView {
             return slider.value
         }
         set{
-            slider.value = newValue
+            DispatchQueue.main.async { [weak self] in
+                self?.slider.value = newValue
+            }
         }
     }
     
@@ -51,13 +59,11 @@ class SliderTextView: UIView {
         }
     }
     
+    var sliderType: BudgetType = .other
+    
     @IBAction func sliderValueChanged(_ sender: UISlider) {
-        let x = Int(round(sender.value))
-        thumbview.label.text = "\(x)"
-        thumbview.label.layoutIfNeeded()
-        thumbview.layoutIfNeeded()
-        print("x: \(getX(slider: sender)) , r: \(getX(slider: sender) - thumbview.frame.width / 2)")
-        leadingConstraint.constant = getX(slider: sender)
+//        updateLabelPosition(sender.value)
+        delegate?.valueChanged(sender.value, type: sliderType)
     }
     
     override init(frame: CGRect) {
@@ -83,6 +89,8 @@ class SliderTextView: UIView {
                                                       options: [],
                                                       metrics: nil,
                                                       views: ["childView": view]))
+        thumbview.layer.masksToBounds = true
+        thumbview.layer.cornerRadius = thumbview.frame.height / 2
         thumbview.targetView = slider
         sliderValueChanged(slider)
     }
@@ -91,6 +99,18 @@ class SliderTextView: UIView {
         let slidertTrack : CGRect = slider.trackRect(forBounds: slider.bounds)
         let sliderFrm : CGRect = slider .thumbRect(forBounds: slider.bounds, trackRect: slidertTrack, value: slider.value)
         return sliderFrm.origin.x + slider.frame.origin.x
+    }
+    
+    func updateLabelPosition(_ value: Float) {
+        DispatchQueue.main.async { [weak self] in
+            guard let slider = self?.slider else { return }
+            let x = Int(round(value))
+            self?.thumbview.label.text = "\(x) ฿"
+            self?.thumbview.label.layoutIfNeeded()
+            self?.thumbview.layoutIfNeeded()
+            guard let xPosition = self?.getX(slider: slider) else { return }
+            self?.leadingConstraint.constant = xPosition
+        }
     }
 }
 
@@ -104,4 +124,3 @@ extension SliderTextView {
     }
     
 }
-

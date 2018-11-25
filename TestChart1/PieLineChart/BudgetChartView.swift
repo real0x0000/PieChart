@@ -2,7 +2,7 @@
 //  BudgetChartView.swift
 //  TestChart1
 //
-//  Created by ANUWAT SITTICCHAK on 22/10/2561 BE.
+//  Created by ANUWAT SITTICHAK on 22/10/2561 BE.
 //  Copyright © 2561 ANUWAT SITTICHAK. All rights reserved.
 //
 
@@ -51,47 +51,14 @@ class BudgetChartView: UIView {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var chartView: PieChart!
     @IBOutlet weak var flightSlider: SliderTextView!
-    @IBOutlet weak var hotelSlider: UISlider!
-    @IBOutlet weak var otherSlider: UISlider!
+    @IBOutlet weak var hotelSlider: SliderTextView!
+    @IBOutlet weak var otherSlider: SliderTextView!
     @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var editBudgetButton: UIButton!
     @IBOutlet weak var editBudgetButtonView: UIView!
     @IBOutlet weak var budgetView: UIView!
     @IBOutlet weak var budgetTextField: UITextField!
     @IBOutlet weak var editBudgetView: UIView!
-    
-    @IBAction func slideValueChanged(_ sender: UISlider) {
-        switch sender {
-        case flightSlider:
-            if flightSlider.value < Float(minFlightBudget) {
-                flightSlider.value = Float(minFlightBudget)
-            }
-            else if flightSlider.value > Float(totalBudget - hotelBudget) {
-                flightSlider.value = Float(totalBudget - hotelBudget)
-            }
-            flightBudget = Double(flightSlider.value)
-            otherSlider.value = Float(totalBudget - flightBudget - hotelBudget)
-            otherBudget = totalBudget - flightBudget - hotelBudget
-        case hotelSlider:
-            if hotelSlider.value < Float(minHotelBudget) {
-                hotelSlider.value = Float(minHotelBudget)
-            }
-            else if hotelSlider.value > Float(totalBudget - flightBudget) {
-                hotelSlider.value = Float(totalBudget - flightBudget)
-            }
-            hotelBudget = Double(hotelSlider.value)
-            otherSlider.value = Float(totalBudget - flightBudget - hotelBudget)
-            otherBudget = totalBudget - flightBudget - hotelBudget
-        case otherSlider:
-            if otherSlider.value > Float(totalBudget - (flightBudget + hotelBudget)) {
-                otherSlider.value = Float(totalBudget - (flightBudget + hotelBudget))
-            }
-            otherBudget = Double(otherSlider.value)
-        default:
-            break
-        }
-        //        updateDictValue()
-    }
     
     @objc func sliderDidEndSliding() {
         if isValueChanged {
@@ -126,19 +93,22 @@ class BudgetChartView: UIView {
         chartView.isUserInteractionEnabled = false
         chartView.animDuration = 0.0001
         editBudgetView.isHidden = true
-        flightSlider.isUserInteractionEnabled = true
-        hotelSlider.isUserInteractionEnabled = true
-        otherSlider.isUserInteractionEnabled = true
-        flightSlider.slider.addTarget(self, action: #selector(sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
-        hotelSlider.addTarget(self, action: #selector(sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
-        otherSlider.addTarget(self, action: #selector(sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
-        
+        flightSlider.slider.addTarget(self, action: #selector(BudgetChartView.sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
+        hotelSlider.slider.addTarget(self, action: #selector(BudgetChartView.sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
+        otherSlider.slider.addTarget(self, action: #selector(BudgetChartView.sliderDidEndSliding), for: [.touchUpInside, .touchUpOutside])
+        flightSlider.sliderType = .flight
+        flightSlider.delegate = self
+        hotelSlider.sliderType = .hotel
+        hotelSlider.delegate = self
+        otherSlider.sliderType = .other
+        otherSlider.delegate = self
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(BudgetChartView.doneKeyboardInput))
         toolBar.items = [flexSpace, doneButton]
         budgetTextField.inputAccessoryView = toolBar
+        budgetTextField.delegate = self
     }
     
     @objc func doneKeyboardInput() {
@@ -173,6 +143,9 @@ class BudgetChartView: UIView {
         otherSlider.value = Float(otherBudget)
         flightSlider.value = Float(flightBudget)
         hotelSlider.value = Float(hotelBudget)
+        flightSlider.updateLabelPosition(Float(flightBudget))
+        hotelSlider.updateLabelPosition(Float(hotelBudget))
+        otherSlider.updateLabelPosition(Float(otherBudget))
         updateDictValue()
     }
     
@@ -192,6 +165,7 @@ class BudgetChartView: UIView {
             flightSlider.value = Float(flightEntry.budget)
             minFlightBudget = flightEntry.budget
             flightBudget = flightEntry.budget
+            flightSlider.updateLabelPosition(Float(flightEntry.budget))
         }
         if let hotelEntry = budgetDict[.hotel] {
             hotelSlider.minimumTrackTintColor = hotelEntry.color
@@ -200,12 +174,15 @@ class BudgetChartView: UIView {
             hotelSlider.value = Float(hotelEntry.budget)
             minHotelBudget = hotelEntry.budget
             hotelBudget = hotelEntry.budget
+            hotelSlider.updateLabelPosition(Float(hotelEntry.budget))
         }
         if let otherEntry = budgetDict[.other] {
             otherSlider.minimumTrackTintColor = otherEntry.color
             otherSlider.maximumTrackTintColor = otherEntry.color
             otherSlider.maximumValue = Float(totalBudget)
             otherSlider.value = Float(otherEntry.budget)
+            otherBudget = otherEntry.budget
+            otherSlider.updateLabelPosition(Float(otherEntry.budget))
         }
     }
     
@@ -228,7 +205,7 @@ class BudgetChartView: UIView {
         let textLayerSettings = PiePlainTextLayerSettings()
         textLayerSettings.viewRadius = 75
         textLayerSettings.hideOnOverflow = true
-        textLayerSettings.label.font = UIFont.systemFont(ofSize: 12)
+        textLayerSettings.label.font = UIFont.systemFont(ofSize: 10)
         textLayerSettings.label.textColor = UIColor.white
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1
@@ -284,4 +261,56 @@ extension BudgetChartView {
         return nib.instantiate(withOwner: self, options: nil).first as! UIView
     }
     
+}
+
+extension BudgetChartView: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if string.isEmpty {
+            return true
+        }
+        guard let textFieldString = textField.text as NSString? else { return false }
+        let newString = textFieldString.replacingCharacters(in: range, with: string)
+        let decimalRegex = "^([0-9]+)?(\\.([0-9]{1,2})?)?$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", decimalRegex)
+        return predicate.evaluate(with: newString)
+    }
+    
+}
+
+extension BudgetChartView: SliderTextViewDelegate {
+    func valueChanged(_ value: Float, type: BudgetType) {
+        switch type {
+        case .flight:
+            if flightSlider.value < Float(minFlightBudget) {
+                flightSlider.value = Float(minFlightBudget)
+            }
+            else if flightSlider.value > Float(totalBudget - hotelBudget) {
+                flightSlider.value = Float(totalBudget - hotelBudget)
+            }
+            flightBudget = Double(flightSlider.value)
+            otherSlider.value = Float(totalBudget - flightBudget - hotelBudget)
+            otherBudget = totalBudget - flightBudget - hotelBudget
+            flightSlider.updateLabelPosition(flightSlider.value)
+            otherSlider.updateLabelPosition(otherSlider.value)
+        case .hotel:
+            if hotelSlider.value < Float(minHotelBudget) {
+                hotelSlider.value = Float(minHotelBudget)
+            }
+            else if hotelSlider.value > Float(totalBudget - flightBudget) {
+                hotelSlider.value = Float(totalBudget - flightBudget)
+            }
+            hotelBudget = Double(hotelSlider.value)
+            otherSlider.value = Float(totalBudget - flightBudget - hotelBudget)
+            otherBudget = totalBudget - flightBudget - hotelBudget
+            hotelSlider.updateLabelPosition(hotelSlider.value)
+            otherSlider.updateLabelPosition(otherSlider.value)
+        case .other:
+            if otherSlider.value > Float(totalBudget - (flightBudget + hotelBudget)) {
+                otherSlider.value = Float(totalBudget - (flightBudget + hotelBudget))
+            }
+            otherBudget = Double(otherSlider.value)
+            otherSlider.updateLabelPosition(otherSlider.value)
+        }
+    }
 }

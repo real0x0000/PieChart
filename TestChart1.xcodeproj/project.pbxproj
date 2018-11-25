@@ -40,6 +40,7 @@
 		36C17779217DFFB700BF31DE /* AlphaPieViewLayerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C17777217DFFB700BF31DE /* AlphaPieViewLayerAnimator.swift */; };
 		36C1777B217DFFD200BF31DE /* PiePlainTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1777A217DFFD200BF31DE /* PiePlainTextLayer.swift */; };
 		36C1777E217DFFE500BF31DE /* PieChartLabelSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1777D217DFFE500BF31DE /* PieChartLabelSettings.swift */; };
+		BAAA477621AA43B3006E7F0A /* BudgetSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA477521AA43B3006E7F0A /* BudgetSlider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		36C17777217DFFB700BF31DE /* AlphaPieViewLayerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphaPieViewLayerAnimator.swift; sourceTree = "<group>"; };
 		36C1777A217DFFD200BF31DE /* PiePlainTextLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PiePlainTextLayer.swift; sourceTree = "<group>"; };
 		36C1777D217DFFE500BF31DE /* PieChartLabelSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartLabelSettings.swift; sourceTree = "<group>"; };
+		BAAA477521AA43B3006E7F0A /* BudgetSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 				0F561BCA21A98905004B42DD /* SliderTextView.xib */,
 				0F561BCC21A98A1F004B42DD /* SliderTextView.swift */,
 				0F561BCE21A98C8F004B42DD /* TumbView.swift */,
+				BAAA477521AA43B3006E7F0A /* BudgetSlider.swift */,
 				36C17749217DFD7A00BF31DE /* PieChart */,
 			);
 			path = PieLineChart;
@@ -444,6 +447,7 @@
 				36C17719217DFCAC00BF31DE /* MainViewController.swift in Sources */,
 				36C1777B217DFFD200BF31DE /* PiePlainTextLayer.swift in Sources */,
 				36C1777E217DFFE500BF31DE /* PieChartLabelSettings.swift in Sources */,
+				BAAA477621AA43B3006E7F0A /* BudgetSlider.swift in Sources */,
 				36C17763217DFEBD00BF31DE /* CGPoint.swift in Sources */,
 				36C1774D217DFDE700BF31DE /* PieChartDelegate.swift in Sources */,
 				36C1776D217DFF2B00BF31DE /* PieCustomViewsLayer.swift in Sources */,
