@@ -240,6 +240,7 @@ class BudgetChartView: UIView {
         budgetDict[.flight]?.budget = flightBudget
         budgetDict[.hotel]?.budget = hotelBudget
         budgetDict[.other]?.budget = otherBudget
+        budgetDict[.unused]?.budget = totalBudget - flightBudget - hotelBudget - otherBudget
         delegate?.currentBudget(budgetDict: budgetDict)
         updateChart()
     }
@@ -279,6 +280,7 @@ extension BudgetChartView: UITextFieldDelegate {
 }
 
 extension BudgetChartView: SliderTextViewDelegate {
+    
     func valueChanged(_ value: Float, type: BudgetType) {
         switch type {
         case .flight:
@@ -311,6 +313,9 @@ extension BudgetChartView: SliderTextViewDelegate {
             }
             otherBudget = Double(otherSlider.value)
             otherSlider.updateLabelPosition(otherSlider.value)
+        default:
+            break
         }
     }
+    
 }

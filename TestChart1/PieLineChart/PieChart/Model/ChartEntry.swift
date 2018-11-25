@@ -12,6 +12,7 @@ enum BudgetType: Int {
     case flight = 0
     case hotel = 1
     case other = 2
+    case unused = 3
 }
 
 struct BudgetEntry {
