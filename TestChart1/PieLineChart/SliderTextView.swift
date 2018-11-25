@@ -62,7 +62,6 @@ class SliderTextView: UIView {
     var sliderType: BudgetType = .other
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
-//        updateLabelPosition(sender.value)
         delegate?.valueChanged(sender.value, type: sliderType)
     }
     

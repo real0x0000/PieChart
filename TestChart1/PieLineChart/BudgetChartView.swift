@@ -18,7 +18,7 @@ class BudgetChartView: UIView {
     var totalBudget: Double = 0.0
     var minFlightBudget: Double = 0.0
     var minHotelBudget: Double = 0.0
-    var flightBudget: Double = 0.0{
+    var flightBudget: Double = 0.0 {
         didSet{
             if !isValueChanged {
                 isValueChanged = flightBudget != oldValue
