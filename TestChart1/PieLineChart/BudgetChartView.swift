@@ -58,6 +58,7 @@ class BudgetChartView: UIView {
         editBudgetView.isHidden = false
         budgetView.isHidden = true
         editBudgetButtonView.isHidden = true
+        budgetTextField.becomeFirstResponder()
     }
     
     @objc func sliderDidEndSliding() {

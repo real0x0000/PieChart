@@ -26,9 +26,7 @@ class SliderTextView: UIView {
             return slider.value
         }
         set{
-            DispatchQueue.main.async { [weak self] in
-                self?.slider.value = newValue
-            }
+            slider.value = newValue
         }
     }
     
