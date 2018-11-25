@@ -33,12 +33,8 @@ class SliderTextView: UIView {
     }
     
     var maximumValue : Float {
-        get{
-            return slider.maximumValue
-        }
-        set{
-            slider.maximumValue = newValue
-        }
+        get { return slider.maximumValue }
+        set { slider.maximumValue = newValue }
     }
     
     var minimumTrackTintColor : UIColor? {

@@ -42,12 +42,6 @@ class BudgetChartView: UIView {
     var budgetDict: [BudgetType: BudgetEntry] = [:]
     var delegate: BudgetChartDelegate?
     
-    @IBAction func editBudget(_ sender: UIButton) {
-        editBudgetView.isHidden = false
-        budgetView.isHidden = true
-        editBudgetButtonView.isHidden = true
-    }
-    
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var chartView: PieChart!
     @IBOutlet weak var flightSlider: SliderTextView!
@@ -59,6 +53,12 @@ class BudgetChartView: UIView {
     @IBOutlet weak var budgetView: UIView!
     @IBOutlet weak var budgetTextField: UITextField!
     @IBOutlet weak var editBudgetView: UIView!
+    
+    @IBAction func editBudget(_ sender: UIButton) {
+        editBudgetView.isHidden = false
+        budgetView.isHidden = true
+        editBudgetButtonView.isHidden = true
+    }
     
     @objc func sliderDidEndSliding() {
         if isValueChanged {
@@ -113,25 +113,23 @@ class BudgetChartView: UIView {
     
     @objc func doneKeyboardInput() {
         self.view.endEditing(true)
-        if let budgetInput = budgetTextField.text {
-            if let dBudget = Double(budgetInput) {
-                if dBudget < (minFlightBudget + minHotelBudget) {
-                    
-                }
-                else {
-                    if dBudget < totalBudget {
-                        flightBudget = minFlightBudget
-                        hotelBudget = minHotelBudget
-                    }
-                    totalBudget = dBudget
-                    reCalculateBudget()
-                }
-                budgetTextField.text = "\(totalBudget)"
-                budgetLabel.text = "\(totalBudget)"
-                editBudgetView.isHidden = true
-                budgetView.isHidden = false
-                editBudgetButtonView.isHidden = false
+        if let budgetInput = budgetTextField.text, let dBudget = Double(budgetInput) {
+            if dBudget < (minFlightBudget + minHotelBudget) {
+                //alert or do nothing
             }
+            else {
+                if dBudget < totalBudget {
+                    flightBudget = minFlightBudget
+                    hotelBudget = minHotelBudget
+                }
+                totalBudget = dBudget
+                reCalculateBudget()
+            }
+            budgetTextField.text = "\(totalBudget)"
+            budgetLabel.text = "\(totalBudget)"
+            editBudgetView.isHidden = true
+            budgetView.isHidden = false
+            editBudgetButtonView.isHidden = false
         }
     }
     
@@ -184,6 +182,7 @@ class BudgetChartView: UIView {
             otherBudget = otherEntry.budget
             otherSlider.updateLabelPosition(Float(otherEntry.budget))
         }
+        updateChart()
     }
     
     fileprivate func createModels(budgetDict: [BudgetType: BudgetEntry]) -> [PieSliceModel] {
@@ -205,7 +204,7 @@ class BudgetChartView: UIView {
         let textLayerSettings = PiePlainTextLayerSettings()
         textLayerSettings.viewRadius = 75
         textLayerSettings.hideOnOverflow = true
-        textLayerSettings.label.font = UIFont.systemFont(ofSize: 10)
+        textLayerSettings.label.font = UIFont.systemFont(ofSize: 10, weight: .bold)
         textLayerSettings.label.textColor = UIColor.white
         let formatter = NumberFormatter()
         formatter.maximumFractionDigits = 1

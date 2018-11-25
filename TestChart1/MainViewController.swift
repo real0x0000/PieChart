@@ -27,7 +27,6 @@ class MainViewController: UIViewController {
         dict[.other] = otherEntry
         budgetChart.delegate = self
         budgetChart.initChartValue(with: dict)
-        budgetChart.updateChart()
     }
     
 }
