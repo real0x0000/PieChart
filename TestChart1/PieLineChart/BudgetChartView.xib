@@ -17,11 +17,17 @@
                 <outlet property="editBudgetButton" destination="ZcU-eb-r4w" id="ccz-6T-2aR"/>
                 <outlet property="editBudgetButtonView" destination="arU-PR-YXV" id="Yyi-lW-V8I"/>
                 <outlet property="editBudgetView" destination="bpo-4g-mKL" id="lw7-MO-VUT"/>
+<<<<<<< HEAD
                 <outlet property="flightSlider" destination="MPp-Ca-cQx" id="Kl4-ve-hlK"/>
                 <outlet property="flightValueLabel" destination="OpJ-yL-Fww" id="0xO-oq-M8n"/>
                 <outlet property="flightValueView" destination="9bb-CF-yba" id="o9p-Lm-fw5"/>
                 <outlet property="hotelSlider" destination="Yid-sY-BIi" id="iAB-xv-iDZ"/>
                 <outlet property="otherSlider" destination="4xr-WO-yiA" id="yrR-Wx-Mjn"/>
+=======
+                <outlet property="flightSlider" destination="D73-SM-VuS" id="0Jc-GQ-oi1"/>
+                <outlet property="hotelSlider" destination="SKe-vU-6td" id="73w-X8-zWc"/>
+                <outlet property="otherSlider" destination="qtk-PU-93s" id="Rb0-fJ-Stp"/>
+>>>>>>> custom-slider
                 <outlet property="view" destination="3v3-ij-6S7" id="BUf-3Q-cjB"/>
             </connections>
         </placeholder>
@@ -175,6 +181,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="vOr-sl-DSn" secondAttribute="trailing" id="xAz-sD-uLj"/>
                                             </constraints>
                                         </view>
+<<<<<<< HEAD
                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="MPp-Ca-cQx">
                                             <rect key="frame" x="78" y="20" width="269" height="31"/>
                                             <connections>
@@ -198,20 +205,33 @@
                                                 <constraint firstAttribute="bottom" secondItem="OpJ-yL-Fww" secondAttribute="bottom" id="Kjg-gB-74M"/>
                                                 <constraint firstItem="OpJ-yL-Fww" firstAttribute="top" secondItem="9bb-CF-yba" secondAttribute="top" id="Rdu-y8-9u8"/>
                                                 <constraint firstItem="OpJ-yL-Fww" firstAttribute="leading" secondItem="9bb-CF-yba" secondAttribute="leading" constant="8" id="dAd-UY-E4n"/>
+=======
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D73-SM-VuS" customClass="SliderTextView" customModule="TestChart1" customModuleProvider="target">
+                                            <rect key="frame" x="80" y="20" width="265" height="30"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="tHq-Mm-YqS"/>
+>>>>>>> custom-slider
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="WDk-vR-tR0" firstAttribute="leading" secondItem="Iie-vt-7UO" secondAttribute="leading" constant="30" id="8bf-b8-7FM"/>
                                         <constraint firstAttribute="height" constant="70" id="Ahc-5y-X1g"/>
+<<<<<<< HEAD
                                         <constraint firstItem="9bb-CF-yba" firstAttribute="height" secondItem="MPp-Ca-cQx" secondAttribute="height" id="F1B-LC-Dye"/>
                                         <constraint firstItem="MPp-Ca-cQx" firstAttribute="centerY" secondItem="Iie-vt-7UO" secondAttribute="centerY" id="Li6-qZ-bmk"/>
                                         <constraint firstItem="9bb-CF-yba" firstAttribute="bottom" secondItem="MPp-Ca-cQx" secondAttribute="bottom" id="YCx-XL-2ZD"/>
                                         <constraint firstItem="WDk-vR-tR0" firstAttribute="top" secondItem="Iie-vt-7UO" secondAttribute="top" constant="10" id="jvp-ge-R77"/>
                                         <constraint firstItem="9bb-CF-yba" firstAttribute="top" secondItem="MPp-Ca-cQx" secondAttribute="top" id="l79-QP-Ja0"/>
                                         <constraint firstItem="MPp-Ca-cQx" firstAttribute="leading" secondItem="WDk-vR-tR0" secondAttribute="trailing" constant="10" id="mby-a5-FUW"/>
+=======
+                                        <constraint firstItem="D73-SM-VuS" firstAttribute="centerY" secondItem="Iie-vt-7UO" secondAttribute="centerY" id="Hob-f8-OeY"/>
+                                        <constraint firstItem="D73-SM-VuS" firstAttribute="leading" secondItem="WDk-vR-tR0" secondAttribute="trailing" constant="10" id="PDE-GJ-XBu"/>
+                                        <constraint firstAttribute="trailing" secondItem="D73-SM-VuS" secondAttribute="trailing" constant="30" id="e51-Yj-wpG"/>
+                                        <constraint firstItem="WDk-vR-tR0" firstAttribute="top" secondItem="Iie-vt-7UO" secondAttribute="top" constant="10" id="jvp-ge-R77"/>
+>>>>>>> custom-slider
                                         <constraint firstAttribute="bottom" secondItem="WDk-vR-tR0" secondAttribute="bottom" constant="10" id="olt-Md-YNV"/>
-                                        <constraint firstAttribute="trailing" secondItem="MPp-Ca-cQx" secondAttribute="trailing" constant="30" id="wj6-u6-BRl"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vDX-ZJ-12l">
@@ -246,21 +266,22 @@
                                                 <constraint firstItem="SZH-wP-jSb" firstAttribute="leading" secondItem="UMZ-1C-lbH" secondAttribute="leading" constant="5" id="xVn-ig-1fb"/>
                                             </constraints>
                                         </view>
-                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Yid-sY-BIi">
-                                            <rect key="frame" x="78" y="20" width="269" height="31"/>
-                                            <connections>
-                                                <action selector="slideValueChanged:" destination="-1" eventType="valueChanged" id="6sB-bd-ASR"/>
-                                            </connections>
-                                        </slider>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKe-vU-6td" customClass="SliderTextView" customModule="TestChart1" customModuleProvider="target">
+                                            <rect key="frame" x="80" y="20" width="265" height="30"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="irO-ke-kXe"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="UMZ-1C-lbH" firstAttribute="leading" secondItem="vDX-ZJ-12l" secondAttribute="leading" constant="30" id="QO1-cC-gud"/>
+                                        <constraint firstAttribute="trailing" secondItem="SKe-vU-6td" secondAttribute="trailing" constant="30" id="R9u-eX-JTQ"/>
                                         <constraint firstAttribute="height" constant="70" id="aPT-hC-p3X"/>
+                                        <constraint firstItem="SKe-vU-6td" firstAttribute="centerY" secondItem="vDX-ZJ-12l" secondAttribute="centerY" id="dlr-2t-gOL"/>
+                                        <constraint firstItem="SKe-vU-6td" firstAttribute="leading" secondItem="UMZ-1C-lbH" secondAttribute="trailing" constant="10" id="elo-gA-Zfa"/>
                                         <constraint firstItem="UMZ-1C-lbH" firstAttribute="top" secondItem="vDX-ZJ-12l" secondAttribute="top" constant="10" id="fq2-kY-vb8"/>
                                         <constraint firstAttribute="bottom" secondItem="UMZ-1C-lbH" secondAttribute="bottom" constant="10" id="hgM-v4-WH8"/>
-                                        <constraint firstItem="Yid-sY-BIi" firstAttribute="centerY" secondItem="vDX-ZJ-12l" secondAttribute="centerY" id="hsi-Zn-iCm"/>
-                                        <constraint firstAttribute="trailing" secondItem="Yid-sY-BIi" secondAttribute="trailing" constant="30" id="mLF-cd-aaW"/>
-                                        <constraint firstItem="Yid-sY-BIi" firstAttribute="leading" secondItem="UMZ-1C-lbH" secondAttribute="trailing" constant="10" id="xVN-gR-vOB"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yva-zU-E9V">
@@ -295,19 +316,20 @@
                                                 <constraint firstItem="bl0-US-Ju1" firstAttribute="leading" secondItem="ToF-lv-dG7" secondAttribute="leading" id="zRw-bO-WET"/>
                                             </constraints>
                                         </view>
-                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="4xr-WO-yiA">
-                                            <rect key="frame" x="78" y="20" width="269" height="31"/>
-                                            <connections>
-                                                <action selector="slideValueChanged:" destination="-1" eventType="valueChanged" id="9qk-kb-7eD"/>
-                                            </connections>
-                                        </slider>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qtk-PU-93s" customClass="SliderTextView" customModule="TestChart1" customModuleProvider="target">
+                                            <rect key="frame" x="80" y="20" width="265" height="30"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="qfi-wd-44A"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="4xr-WO-yiA" firstAttribute="centerY" secondItem="yva-zU-E9V" secondAttribute="centerY" id="8Yb-PG-jVT"/>
+                                        <constraint firstItem="qtk-PU-93s" firstAttribute="leading" secondItem="ToF-lv-dG7" secondAttribute="trailing" constant="10" id="C1D-ov-NWx"/>
                                         <constraint firstAttribute="bottom" secondItem="ToF-lv-dG7" secondAttribute="bottom" constant="10" id="FXf-Zw-9uH"/>
-                                        <constraint firstAttribute="trailing" secondItem="4xr-WO-yiA" secondAttribute="trailing" constant="30" id="Txz-Nv-JGX"/>
+                                        <constraint firstItem="qtk-PU-93s" firstAttribute="centerY" secondItem="yva-zU-E9V" secondAttribute="centerY" id="KB6-w4-ZqM"/>
+                                        <constraint firstAttribute="trailing" secondItem="qtk-PU-93s" secondAttribute="trailing" constant="30" id="PLP-zw-UaU"/>
                                         <constraint firstItem="ToF-lv-dG7" firstAttribute="top" secondItem="yva-zU-E9V" secondAttribute="top" constant="10" id="Z9d-ou-nJs"/>
-                                        <constraint firstItem="4xr-WO-yiA" firstAttribute="leading" secondItem="ToF-lv-dG7" secondAttribute="trailing" constant="10" id="dSn-xq-bQ1"/>
                                         <constraint firstAttribute="height" constant="70" id="fNP-K8-s6a"/>
                                         <constraint firstItem="ToF-lv-dG7" firstAttribute="leading" secondItem="yva-zU-E9V" secondAttribute="leading" constant="30" id="vjB-9S-WlL"/>
                                     </constraints>

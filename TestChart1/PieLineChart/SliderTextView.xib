@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SliderTextView" customModule="TestChart1" customModuleProvider="target">
+            <connections>
+                <outlet property="leadingConstraint" destination="lQp-aP-yhe" id="EVp-u4-134"/>
+                <outlet property="slider" destination="Dnr-sR-H60" id="YNm-9U-cGw"/>
+                <outlet property="thumbview" destination="9Zd-gq-VpI" id="ysI-v9-osI"/>
+                <outlet property="view" destination="iN0-l3-epB" id="epg-tG-Dbf"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="6KJ-7P-3VB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                    <subviews>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Dnr-sR-H60" customClass="BudgetSlider" customModule="TestChart1" customModuleProvider="target">
+                            <rect key="frame" x="-2" y="0.0" width="379" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="98t-mH-7ar"/>
+                            </constraints>
+                            <connections>
+                                <action selector="sliderValueChanged:" destination="-1" eventType="valueChanged" id="piK-t1-h6R"/>
+                            </connections>
+                        </slider>
+                        <view verifyAmbiguity="off" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Zd-gq-VpI" customClass="TumbView" customModule="TestChart1" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="47" height="30"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOg-f7-ZZj">
+                                    <rect key="frame" x="8" y="0.0" width="31" height="30"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="HOg-f7-ZZj" firstAttribute="top" secondItem="9Zd-gq-VpI" secondAttribute="top" id="B6v-Il-a44"/>
+                                <constraint firstAttribute="trailing" secondItem="HOg-f7-ZZj" secondAttribute="trailing" constant="8" id="E1i-I9-tyH"/>
+                                <constraint firstAttribute="bottom" secondItem="HOg-f7-ZZj" secondAttribute="bottom" id="Re6-Ik-4RO"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="iVB-db-hEK"/>
+                                <constraint firstItem="HOg-f7-ZZj" firstAttribute="leading" secondItem="9Zd-gq-VpI" secondAttribute="leading" constant="8" id="rBh-Gy-XzE"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="label" destination="HOg-f7-ZZj" id="cIS-W7-bSI"/>
+                            </connections>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Dnr-sR-H60" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="AzL-SC-LjP"/>
+                        <constraint firstItem="Dnr-sR-H60" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HQk-vM-jh8"/>
+                        <constraint firstItem="9Zd-gq-VpI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Igt-Pl-iD2"/>
+                        <constraint firstAttribute="trailing" secondItem="Dnr-sR-H60" secondAttribute="trailing" id="Jnz-ZI-aKt"/>
+                        <constraint firstAttribute="bottom" secondItem="Dnr-sR-H60" secondAttribute="bottom" id="OH2-vv-3rZ"/>
+                        <constraint firstItem="9Zd-gq-VpI" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="YRt-Gb-8oz"/>
+                        <constraint firstItem="9Zd-gq-VpI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" priority="750" id="lQp-aP-yhe"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="top" secondItem="6KJ-7P-3VB" secondAttribute="top" id="45s-hY-ceJ"/>
+                <constraint firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="Ary-bd-8U5"/>
+                <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="6KJ-7P-3VB" secondAttribute="leading" id="ZJK-Da-62d"/>
+                <constraint firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="u7I-Kb-0hS"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-112.8" y="447.0764617691155"/>
+        </view>
+    </objects>
+</document>
