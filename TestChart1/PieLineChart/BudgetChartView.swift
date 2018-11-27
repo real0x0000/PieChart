@@ -282,29 +282,57 @@ extension BudgetChartView: SliderTextViewDelegate {
     func valueChanged(_ value: Float, type: BudgetType) {
         switch type {
         case .flight:
-            if flightSlider.value < Float(minFlightBudget) {
-                flightSlider.value = Float(minFlightBudget)
+            let tempFlight = Double(flightSlider.value)
+            if tempFlight < minFlightBudget {
+                flightBudget = minFlightBudget
+                otherBudget = totalBudget - flightBudget - hotelBudget
             }
-            else if flightSlider.value > Float(totalBudget - hotelBudget) {
-                flightSlider.value = Float(totalBudget - hotelBudget)
+            else {
+                let tempOther = totalBudget - tempFlight - hotelBudget
+                if tempOther < 0 {
+                    let tempHotel = hotelBudget + tempOther
+                    if tempHotel < minHotelBudget {
+                        hotelBudget = minHotelBudget
+                        otherBudget = 0
+                        flightBudget = totalBudget - minHotelBudget
+                    }
+                    else {
+                        hotelBudget = tempHotel
+                        otherBudget = 0
+                        flightBudget = totalBudget - hotelBudget
+                    }
+                }
+                else {
+                    flightBudget = Double(tempFlight)
+                    otherBudget = tempOther
+                }
             }
-            flightBudget = Double(flightSlider.value)
-            otherSlider.value = Float(totalBudget - flightBudget - hotelBudget)
-            otherBudget = totalBudget - flightBudget - hotelBudget
-            flightSlider.updateLabelPosition(flightSlider.value)
-            otherSlider.updateLabelPosition(otherSlider.value)
         case .hotel:
-            if hotelSlider.value < Float(minHotelBudget) {
-                hotelSlider.value = Float(minHotelBudget)
+            let tempHotel = Double(hotelSlider.value)
+            if tempHotel < minHotelBudget {
+                hotelBudget = minHotelBudget
+                otherBudget = totalBudget - flightBudget - hotelBudget
             }
-            else if hotelSlider.value > Float(totalBudget - flightBudget) {
-                hotelSlider.value = Float(totalBudget - flightBudget)
+            else {
+                let tempOther = totalBudget - flightBudget - tempHotel
+                if tempOther < 0 {
+                    let tempFlight = flightBudget + tempOther
+                    if tempFlight < minFlightBudget {
+                        flightBudget = minFlightBudget
+                        otherBudget = 0
+                        hotelBudget = totalBudget - minFlightBudget
+                    }
+                    else {
+                        flightBudget = tempFlight
+                        otherBudget = 0
+                        hotelBudget = totalBudget - flightBudget
+                    }
+                }
+                else {
+                    hotelBudget = Double(tempHotel)
+                    otherBudget = tempOther
+                }
             }
-            hotelBudget = Double(hotelSlider.value)
-            otherSlider.value = Float(totalBudget - flightBudget - hotelBudget)
-            otherBudget = totalBudget - flightBudget - hotelBudget
-            hotelSlider.updateLabelPosition(hotelSlider.value)
-            otherSlider.updateLabelPosition(otherSlider.value)
         case .other:
             if otherSlider.value > Float(totalBudget - (flightBudget + hotelBudget)) {
                 otherSlider.value = Float(totalBudget - (flightBudget + hotelBudget))
@@ -315,11 +343,12 @@ extension BudgetChartView: SliderTextViewDelegate {
             let extraHotelBudget = (unusedBudget / 2).rounded(.down)
             flightBudget = flightBudget + extraFlightBudget
             hotelBudget = hotelBudget + extraHotelBudget
-            flightSlider.value = Float(flightBudget)
-            hotelSlider.value = Float(hotelBudget)
-            flightSlider.updateLabelPosition(flightSlider.value)
-            hotelSlider.updateLabelPosition(hotelSlider.value)
-            otherSlider.updateLabelPosition(otherSlider.value)
         }
+        flightSlider.value = Float(flightBudget)
+        hotelSlider.value = Float(hotelBudget)
+        otherSlider.value = Float(otherBudget)
+        flightSlider.updateLabelPosition(flightSlider.value)
+        hotelSlider.updateLabelPosition(hotelSlider.value)
+        otherSlider.updateLabelPosition(otherSlider.value)
     }
 }
