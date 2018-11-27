@@ -126,8 +126,8 @@ class BudgetChartView: UIView {
                 totalBudget = dBudget
                 reCalculateBudget()
             }
-            budgetTextField.text = "\(totalBudget)"
-            budgetLabel.text = "\(totalBudget)"
+            budgetTextField.text = "\(Int(totalBudget))"
+            budgetLabel.text = "\(Int(totalBudget))"
             editBudgetView.isHidden = true
             budgetView.isHidden = false
             editBudgetButtonView.isHidden = false
@@ -155,8 +155,8 @@ class BudgetChartView: UIView {
             sumBudget += dict.value.budget
         }
         totalBudget = sumBudget
-        budgetLabel.text = "\(totalBudget)"
-        budgetTextField.text = "\(totalBudget)"
+        budgetLabel.text = "\(Int(totalBudget))"
+        budgetTextField.text = "\(Int(totalBudget))"
         if let flightEntry = budgetDict[.flight] {
             flightSlider.minimumTrackTintColor = flightEntry.color
             flightSlider.maximumTrackTintColor = flightEntry.color
@@ -271,8 +271,8 @@ extension BudgetChartView: UITextFieldDelegate {
         }
         guard let textFieldString = textField.text as NSString? else { return false }
         let newString = textFieldString.replacingCharacters(in: range, with: string)
-        let decimalRegex = "^([0-9]+)?(\\.([0-9]{1,2})?)?$"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", decimalRegex)
+        let intRegex = "^[1-9][0-9]*$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", intRegex)
         return predicate.evaluate(with: newString)
     }
     
@@ -310,6 +310,15 @@ extension BudgetChartView: SliderTextViewDelegate {
                 otherSlider.value = Float(totalBudget - (flightBudget + hotelBudget))
             }
             otherBudget = Double(otherSlider.value)
+            let unusedBudget = totalBudget - flightBudget - hotelBudget - otherBudget
+            let extraFlightBudget = (unusedBudget / 2).rounded(.up)
+            let extraHotelBudget = (unusedBudget / 2).rounded(.down)
+            flightBudget = flightBudget + extraFlightBudget
+            hotelBudget = hotelBudget + extraHotelBudget
+            flightSlider.value = Float(flightBudget)
+            hotelSlider.value = Float(hotelBudget)
+            flightSlider.updateLabelPosition(flightSlider.value)
+            hotelSlider.updateLabelPosition(hotelSlider.value)
             otherSlider.updateLabelPosition(otherSlider.value)
         }
     }
