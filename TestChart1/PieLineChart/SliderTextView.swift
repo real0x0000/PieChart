@@ -94,11 +94,12 @@ class SliderTextView: UIView {
         return sliderFrm.origin.x + slider.frame.origin.x
     }
     
-    func updateLabelPosition(_ value: Float) {
+    func updateLabelPosition(_ value: Float, step: Int) {
         DispatchQueue.main.async { [weak self] in
             guard let slider = self?.slider else { return }
-            let x = Int(round(value))
-            self?.thumbview.label.text = "\(x) ฿"
+//            let x = Int(round(value))
+            let thumbValue = Int(value) * step
+            self?.thumbview.label.text = "\(thumbValue) ฿"
             self?.thumbview.label.layoutIfNeeded()
             self?.thumbview.layoutIfNeeded()
             guard let xPosition = self?.getX(slider: slider) else { return }
