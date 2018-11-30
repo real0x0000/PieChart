@@ -118,15 +118,16 @@ class BudgetChartView: UIView {
     @objc func doneKeyboardInput() {
         self.view.endEditing(true)
         if let budgetInput = budgetTextField.text, let dBudget = Double(budgetInput) {
-            if dBudget < (minFlightBudget + minHotelBudget) {
+            let absBudget = roundAbsoluteStep(value: dBudget)
+            if absBudget < (minFlightBudget + minHotelBudget) {
                 //alert or do nothing
             }
             else {
-                if dBudget < totalBudget {
+                if absBudget < totalBudget {
                     flightBudget = minFlightBudget
                     hotelBudget = minHotelBudget
                 }
-                totalBudget = dBudget
+                totalBudget = absBudget
                 reCalculateBudget()
             }
             budgetTextField.text = "\(Int(totalBudget))"
@@ -263,6 +264,16 @@ extension BudgetChartView {
         let nibName = type(of: self).description().components(separatedBy: ".").last!
         let nib = UINib(nibName: nibName, bundle: bundle)
         return nib.instantiate(withOwner: self, options: nil).first as! UIView
+    }
+    
+    func roundAbsoluteStep(value: Double) -> Double {
+        let mod = Int(value) % stepValue
+        if mod >= (stepValue / 2) {
+            return value + Double(stepValue - mod)
+        }
+        else {
+            return value - Double(mod)
+        }
     }
     
 }
