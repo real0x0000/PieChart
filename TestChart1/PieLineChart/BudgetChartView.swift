@@ -18,14 +18,7 @@ class BudgetChartView: UIView {
     var totalBudget: Double = 0.0
     var minFlightBudget: Double = 0.0
     var minHotelBudget: Double = 0.0
-    
     var totalStep = 0
-    var minFlightStep = 0
-    var minHotelStep = 0
-    
-    var flightStep = 0
-    var hotelStep = 0
-    var otherStep = 0
     
     var flightBudget: Double = 0.0 {
         didSet{
@@ -146,15 +139,15 @@ class BudgetChartView: UIView {
     
     func reCalculateBudget() {
         otherBudget = totalBudget - flightBudget - hotelBudget
-        flightSlider.maximumValue = Float(totalBudget)
-        hotelSlider.maximumValue = Float(totalBudget)
-        otherSlider.maximumValue = Float(totalBudget)
-        otherSlider.value = Float(otherBudget)
-        flightSlider.value = Float(flightBudget)
-        hotelSlider.value = Float(hotelBudget)
-        flightSlider.updateLabelPosition(Float(flightBudget), step: stepValue)
-        hotelSlider.updateLabelPosition(Float(hotelBudget), step: stepValue)
-        otherSlider.updateLabelPosition(Float(otherBudget), step: stepValue)
+        flightSlider.maximumValue = Float(Int(totalBudget) / stepValue)
+        hotelSlider.maximumValue = Float(Int(totalBudget) / stepValue)
+        otherSlider.maximumValue = Float(Int(totalBudget) / stepValue)
+        otherSlider.value = Float(Int(otherBudget) / stepValue)
+        flightSlider.value = Float(Int(flightBudget) / stepValue)
+        hotelSlider.value = Float(Int(hotelBudget) / stepValue)
+        flightSlider.updateLabelPosition(flightSlider.value, step: stepValue)
+        hotelSlider.updateLabelPosition(hotelSlider.value, step: stepValue)
+        otherSlider.updateLabelPosition(otherSlider.value, step: stepValue)
         updateDictValue()
     }
     
@@ -172,8 +165,7 @@ class BudgetChartView: UIView {
             flightSlider.minimumTrackTintColor = flightEntry.color
             flightSlider.maximumTrackTintColor = flightEntry.color
             flightSlider.maximumValue = Float(totalStep)
-            flightStep = Int(flightEntry.budget) / stepValue
-            flightSlider.value = Float(flightStep)
+            flightSlider.value = Float(Int(flightEntry.budget) / stepValue)
             minFlightBudget = flightEntry.budget
             flightBudget = flightEntry.budget
             flightSlider.updateLabelPosition(Float(flightSlider.value), step: stepValue)
@@ -182,8 +174,7 @@ class BudgetChartView: UIView {
             hotelSlider.minimumTrackTintColor = hotelEntry.color
             hotelSlider.maximumTrackTintColor = hotelEntry.color
             hotelSlider.maximumValue = Float(totalStep)
-            hotelStep = Int(hotelEntry.budget) / stepValue
-            hotelSlider.value = Float(hotelStep)
+            hotelSlider.value = Float(Int(hotelEntry.budget) / stepValue)
             minHotelBudget = hotelEntry.budget
             hotelBudget = hotelEntry.budget
             hotelSlider.updateLabelPosition(Float(hotelSlider.value), step: stepValue)
@@ -192,8 +183,7 @@ class BudgetChartView: UIView {
             otherSlider.minimumTrackTintColor = otherEntry.color
             otherSlider.maximumTrackTintColor = otherEntry.color
             otherSlider.maximumValue = Float(totalStep)
-            otherStep = Int(otherEntry.budget) / stepValue
-            otherSlider.value = Float(otherStep)
+            otherSlider.value = Float(Int(otherEntry.budget) / stepValue)
             otherBudget = otherEntry.budget
             otherSlider.updateLabelPosition(Float(otherSlider.value), step: stepValue)
         }
